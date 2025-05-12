@@ -1,7 +1,7 @@
 export default {
   secret: 'api@266',
   expiresIn: '1h',
-  allowedIp: '',
+  allowedIp: '1',
 }
 
 export const ApiWhatsapp = {
