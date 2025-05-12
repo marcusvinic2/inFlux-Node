@@ -81,6 +81,7 @@ export async function webhookProducts(app: FastifyInstance) {
               clientReferenceProductId:
                 send_product.data.results.codigo.toString(),
               clientProductId: send_product.data.results.codigo.toString(),
+              status: true,
             },
             {
               headers: {
