@@ -48,11 +48,11 @@ export async function webhookSupplier(app: FastifyInstance) {
             throw new BadRequest('Codigo da cidade não encontrado!')
           }
 
-          search_supplier.data.documents[0].number = '08399687000191'
+          // search_supplier.data.documents[0].number = '11028791000184'
 
-          if (search_supplier.data.stateRegistrationNumber === '') {
-            throw new BadRequest('Codigo IE não encontrado!')
-          }
+          // if (search_supplier.data.stateRegistrationNumber === '') {
+          //   throw new BadRequest('Codigo IE não encontrado!')
+          // }
 
           const supplier = {
             CodigoCidade: code_city,
@@ -69,7 +69,10 @@ export async function webhookSupplier(app: FastifyInstance) {
             ),
             NumeroRg: '0000000000',
             NumeroCpfcnpj: search_supplier.data.documents[0].number,
-            NumeroIe: search_supplier.data.stateRegistrationNumber,
+            NumeroIe:
+              search_supplier.data.stateRegistrationNumber === ''
+                ? 'ISENTO'
+                : search_supplier.data.stateRegistrationNumber,
             BoolCliente: false,
             BoolFornecedor: true,
           }
@@ -132,7 +135,10 @@ export async function webhookSupplier(app: FastifyInstance) {
             ),
             NumeroRg: '0000000000',
             NumeroCpfcnpj: search_supplier.data.documents[0].number,
-            NumeroIe: search_supplier.data.stateRegistrationNumber,
+            NumeroIe:
+              search_supplier.data.stateRegistrationNumber === ''
+                ? 'ISENTO'
+                : search_supplier.data.stateRegistrationNumber,
             BoolCliente: false,
             BoolFornecedor: true,
           }
