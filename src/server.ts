@@ -13,6 +13,8 @@ import { errorHandler } from './error-handler'
 import { webhookOrders } from './webhooks/mercado-eletronico/orders'
 import { webhookProducts } from './webhooks/mercado-eletronico/products'
 import { webhookSupplier } from './webhooks/mercado-eletronico/suppliers'
+import { integrationQuestor } from './integrations/neogrid-questor'
+import { startIntegrationOrdersJob } from './jobs/integration-orders-job'
 // import productController from './controller/productController'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
@@ -47,6 +49,10 @@ app.setSerializerCompiler(serializerCompiler)
 app.register(webhookOrders)
 app.register(webhookProducts)
 app.register(webhookSupplier)
+app.register(integrationQuestor)
+
+// Inicia o job agendado
+startIntegrationOrdersJob()
 
 app.setErrorHandler(errorHandler)
 
