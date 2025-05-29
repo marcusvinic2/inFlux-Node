@@ -118,6 +118,10 @@ export async function webhookSupplier(app: FastifyInstance) {
             },
           )
 
+          if (search_supplier.data.clientSupplierId.startsWith('0')) {
+            throw new BadRequest('ID fornecedor inválido.')
+          }
+
           const code_city = await buscarCodigoPorCep('57350-000')
 
           const supplier = {
